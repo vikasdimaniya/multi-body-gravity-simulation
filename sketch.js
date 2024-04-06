@@ -6,7 +6,7 @@ const MAX_SPEED = 0.5;
 const MIN_MASS = 10;
 const MAX_MASS = 20;
 const OUR_GRAVITATIONAL_CONSTANT = -1;
-const DRAW_FORCE_VECTOR = false;
+const DRAW_FORCE_VECTOR = true;
 
 let bodies = [];
 function setup() {

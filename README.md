@@ -1,5 +1,14 @@
 # multi-body-gravity-simulation   
-Just open the index.html in browser and enjoy the simulation.   
+This is a simple simulation of multi-body gravity that runs in browser, easy to try.    
+
+## Installation
+Just clone the repository and open the index.html in the browser.   
+```bash
+git clone https://github.com/vikasdimaniya/multi-body-gravity-simulation
+cd multi-body-gravity-simulation
+```
+open the index.html in the browser.
+edit the sketch.js file to change the simulation parameters.
 
 ## Controls
 in the sketch.js file you can change the following variables to change the simulation:
