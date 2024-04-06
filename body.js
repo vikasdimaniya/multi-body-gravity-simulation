@@ -1,6 +1,6 @@
-const G = -100;
 class Body {
-    constructor(mass, x, y, vx, vy) {
+    constructor(G, mass, x, y, vx, vy) {
+        this.G = G;
         this.mass = mass;
         this.radius = mass;
         this.x = x;
@@ -25,7 +25,7 @@ class Body {
         // sqrt of dx dy
         let dist = sqrt(dx * dx + dy * dy);
         // force = G * m1 * m2 / d^2
-        let force = G * this.mass * body.mass / (dist * dist);
+        let force = this.G * this.mass * body.mass / (dist * dist);
         //find x and y component of force
         let fx = force * cos(atan2(dy, dx));
         let fy = force * sin(atan2(dy, dx));

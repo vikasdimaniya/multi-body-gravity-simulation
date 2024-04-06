@@ -1,16 +1,18 @@
-let width = 1000;
-let height = 750;
-const TOTAL_BODIES = 2;
+const WIDTH = 1000;
+const HEIGHT = 750;
+const TOTAL_BODIES = 40;
 const MIN_SPEED = -0.5;
 const MAX_SPEED = 0.5;
-const MIN_MASS = 1;
-const MAX_MASS = 5;
+const MIN_MASS = 10;
+const MAX_MASS = 20;
+const OUR_GRAVITATIONAL_CONSTANT = -1;
+const DRAW_FORCE_VECTOR = false;
 
 let bodies = [];
 function setup() {
-    createCanvas(width, height);
+    createCanvas(WIDTH, HEIGHT);
     for (let i = 0; i < TOTAL_BODIES; i++) {
-        bodies.push(new Body(random(MIN_MASS, MAX_MASS), random(0, width), random(0, height), random(MIN_SPEED, MAX_SPEED), random(MIN_SPEED, MAX_SPEED)));
+        bodies.push(new Body(OUR_GRAVITATIONAL_CONSTANT, random(MIN_MASS, MAX_MASS), random(0, WIDTH), random(0, HEIGHT), random(MIN_SPEED, MAX_SPEED), random(MIN_SPEED, MAX_SPEED)));
     }
 }
 
@@ -30,22 +32,25 @@ function draw() {
         bodies[i].update();
 
         circle(bodies[i].x, bodies[i].y, bodies[i].radius * 2);
+            
         //draw arrow for force vector
-        let dx = bodies[i].fx;
-        let dy = bodies[i].fy;
-        let len = sqrt(dx * dx + dy * dy) * 1000;
-        let angle = atan2(dy, dx);
-        let arrowHead = (center, vec) => {
-            push();
-            translate(center.x, center.y);
-            rotate(angle);
-            line(0, 0, len, 0);
-            let arrowSize = 7;
-            translate(len, 0);
-            triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
-            pop();
+        if (DRAW_FORCE_VECTOR) {
+            let dx = bodies[i].fx;
+            let dy = bodies[i].fy;
+            let len = sqrt(dx * dx + dy * dy) * 1000;
+            let angle = atan2(dy, dx);
+            let arrowHead = (center, vec) => {
+                push();
+                translate(center.x, center.y);
+                rotate(angle);
+                line(0, 0, len, 0);
+                let arrowSize = 7;
+                translate(len, 0);
+                triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+                pop();
+            }
+            arrowHead({ x: bodies[i].x, y: bodies[i].y }, { dx, dy });
         }
-        arrowHead({ x: bodies[i].x, y: bodies[i].y }, { dx, dy });
     }
 
     //collision detection and handling
