@@ -1,6 +1,8 @@
 # multi-body-gravity-simulation   
 This is a simple simulation of multi-body gravity that runs in browser, easy to try.    
 
+![Alt text](img.png?raw=true "Title")
+
 ## Installation
 Just clone the repository and open the index.html in the browser.   
 ```bash
